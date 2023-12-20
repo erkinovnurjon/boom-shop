@@ -27,13 +27,13 @@ app.use(ProductsRoutes);
 const startApp = async () => {
       try {
             await mongoose.connect(process.env.MONGO_URI, {
-                  useNewUrlParser: true, // Iltimos, bu qatorni o'zgartiring
-                  useUnifiedTopology: true, // Iltimos, bu qatorni o'zgartiring
+                  useNewUrlParser: true,
+                  useUnifiedTopology: true,
             });
 
             console.log('Mongo DB connected');
 
-            const PORT = process.env.PORT || 4200;
+            const PORT = process.env.PORT || 4500;
             app.listen(PORT, () => console.log(`Server is running on port: ${PORT}`));
       } catch (error) {
             console.error('Error starting the app:', error.message);
