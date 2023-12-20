@@ -26,6 +26,12 @@
             {{/if}}
             
             <div class="btn-group" role="group" aria-label="Basic example">
+
+                  {{#if token }}
+                  <button type="button" class="btn btn-danger active">
+                        <a href="/login" class="text-light text-decoration-none">Logout</a>
+                  </button>
+                  {{else}}
                 {{#if isLogin}}
                   <button type="button" class="btn btn-primary active">
                         <a href="/login" class="text-light text-decoration-none">Login</a>
@@ -46,6 +52,8 @@
                   </button>
     
                  {{/if}}
+
+                  {{/if}}
 
                   
                   
