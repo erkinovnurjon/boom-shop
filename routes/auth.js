@@ -7,8 +7,8 @@ const router = Router()
 
 router.get('/login', (req, res) => {
       if (req.cookies.token) {
-           res.redirect('/') 
-           return
+            res.redirect('/')
+            return
       }
       res.render('login', {
             title: 'Login | Sammi',
@@ -16,8 +16,6 @@ router.get('/login', (req, res) => {
             loginError: req.flash('loginError'),
       })
 })
-
-
 
 router.get('/register', (req, res) => {
       if (req.cookies.token) {
@@ -52,10 +50,6 @@ router.post('/login', async (req, res) => {
             return
       }
 
-      const token = generateJWTToken(existUser._id)
-      res.cookie('token', token, { httpOnly: true, secure: true })
-      res.redirect('/')
-
       const isPassEqual = await bcrypt.compare(password, existUser.password)
       if (!isPassEqual) {
             req.flash('loginError', 'Password wrong')
@@ -63,7 +57,8 @@ router.post('/login', async (req, res) => {
             return
       }
 
-      
+      const token = generateJWTToken(existUser._id)
+      res.cookie('token', token, { httpOnly: true, secure: true })
       res.redirect('/')
 })
 
@@ -93,7 +88,7 @@ router.post('/register', async (req, res) => {
       }
       const user = await User.create(userData)
       const token = generateJWTToken(user._id)
-      res.cookie('token' , token , {httpOnly : true , secure : true})
+      res.cookie('token', token, { httpOnly: true, secure: true })
       res.redirect('/')
 })
 
