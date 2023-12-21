@@ -18,7 +18,6 @@ router.get('/', async (req, res) => {
 router.get('/products', async  (req, res) => {
       const user = req.userId ? req.userId.toString() : null
       const myProduct = await Product.find({user}).populate('user').lean()
-      console.log(myProduct)
       res.render('products' , {
             title : "Products  shop",
             isProducts:true,
@@ -33,6 +32,13 @@ router.get('/add', authMiddleware , (req, res) => {
             isAdd : true,
             errorAddProducts: req.flash('errorAddProducts')
       })
+})
+
+router.get('/product/:id' , async (req,res) => {
+      const id = req.params.id
+      const product  = await Product.findById(id).populate('user').lean()
+      console.log(product)
+      res.send('product detail')
 })
 
 router.post('/add-products' , userMiddleware , async (req,res) => {
