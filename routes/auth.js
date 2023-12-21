@@ -11,7 +11,7 @@ router.get('/login', (req, res) => {
             return
       }
       res.render('login', {
-            title: 'Login | Sammi',
+            title: 'Login ',
             isLogin: true,
             loginError: req.flash('loginError'),
       })
@@ -23,7 +23,7 @@ router.get('/register', (req, res) => {
             return
       }
       res.render('register', {
-            title: 'Register | Sammi',
+            title: 'Register',
             isRegister: true,
             registerError: req.flash('registerError'),
       })

@@ -1,3 +1,31 @@
+<div class='marketing'>
+      <div class='row featurette'>
+            <div class='col-md-7 mt-10rem'>
+                  <h2 class='featurette-heading fw-normal lh-1'>First featurette heading.
+                        <span class='text-muted'>It’ll blow your mind.</span>
+                  </h2>
+                  <p class='lead'>Some great placeholder content for the first featurette here. Imagine some exciting
+                        prose here.</p>
+            </div>
+            <div class='col-md-5'>
+                  <img src='/pic1.png' width='100%' />
+            </div>
+      </div>
+</div>
+<hr class='featurette-divider' />
+<div class='row featurette'>
+      <div class='col-md-7 order-md-2 mt-10rem'>
+            <h2 class='featurette-heading fw-normal lh-1'>Oh yeah, it’s that good. <span class='text-muted'>See for
+                        yourself.</span></h2>
+            <p class='lead'>Another featurette? Of course. More placeholder content here to give you an idea of how this
+                  layout would work
+                  with some actual real-world content in place.</p>
+      </div>
+      <div class='col-md-5 order-md-1'>
+            <img src='/pic2.png' width='100%' />
+      </div>
+</div>
+<hr class='featurette-divider' />
 {{#if products.length}}
 <div class='row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3'>
       {{#each products}}
@@ -7,21 +35,18 @@
                   <div class='card-body'>
                         <p class='card-text fw-bold'>{{title}}</p>
                         <div class='d-flex justify-content-between align-items-center'>
-                              <p class="p-0 m-0">{{formatDate createdAt}}</p>
+                              <p class='p-0 m-0'>{{formatDate createdAt}}</p>
                               <small class='text-muted fs-5'>{{price}}.00$</small>
                         </div>
                   </div>
-                  
                   <div class='card-footer'>
                         <div class='btn-group btn-group-sm' role='group' aria-label='Basic example'>
-                              <a type='button' class='btn btn-outline-primary' href="/product/{{_id}}">Detail</a>
-
+                              <a type='button' class='btn btn-outline-primary' href='/product/{{_id}}'>Detail</a>
                               {{#if @root.token}}
-                               {{#ifequal user @root.userId }}
-                              <a href="/edit-product/{{_id}}" type='button' class='btn btn-outline-secondary'>Edit</a>
-                              <form action="/delete-product/{{_id}}">
-                              <button type='submit' class='btn btn-outline-danger'>Delete</button>
-                              
+                              {{#ifequal user @root.userId}}
+                              <a type='button' class='btn btn-outline-secondary' href='/edit-product/{{_id}}'>Edit</a>
+                              <form action='/delete-product/{{_id}}' method='post' class='m-0 btn btn-outline-danger'>
+                                    <button type='submit' class='delete-btn'>Delete</button>
                               </form>
                               {{/ifequal}}
                               {{/if}}
@@ -32,5 +57,19 @@
       {{/each}}
 </div>
 {{else}}
-<p>No product</p>
+<section class='page_404 w-75 mx-auto'>
+      <div class='row'>
+            <div class='col-sm-12'>
+                  <div class='col-sm-10 col-sm-offset-1 text-center'>
+                        <div class='four_zero_four_bg'>
+                              <h1 class='text-center'>404</h1>
+                        </div>
+                        <div class='contant_box_404'>
+                              <h3 class='h2'>Add new products</h3>
+                              <a href='/add' class='btn btn-primary btn-lg mb-5'>Add products</a>
+                        </div>
+                  </div>
+            </div>
+      </div>
+</section>
 {{/if}}

@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
       const products = await Product.find().lean()
 
       res.render('index', {
-            title: 'Boom shop | Sammi',
+            title: 'Boom shop',
             products: products.reverse(),
             userId: req.userId ? req.userId.toString() : null,
       })
@@ -20,7 +20,7 @@ router.get('/products', async (req, res) => {
       const myProducts = await Product.find({ user }).populate('user').lean()
 
       res.render('products', {
-            title: 'Products | Sammi',
+            title: 'Products ',
             isProducts: true,
             myProducts: myProducts,
       })
@@ -76,6 +76,14 @@ router.post('/edit-product/:id', async (req, res) => {
 
       await Product.findByIdAndUpdate(id, req.body, { new: true })
       res.redirect('/products')
+})
+
+router.post('/delete-product/:id' , async (req,res) => {
+      const id = req.params.id
+
+      await Product.findByIdAndDelete(id)
+
+      res.redirect('/')
 })
 
 export default router
